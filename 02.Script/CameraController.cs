@@ -30,21 +30,24 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        Touch touch = Input.GetTouch(0);
-        if (Input.touchCount > 0 && touch.position.x < this.halfScreenWidth)
+        if(Input.touchCount > 0)
         {
-            if (touch.phase == TouchPhase.Began)
+            Touch touch = Input.GetTouch(0);
+            if (touch.position.x < this.halfScreenWidth)
             {
-                firstPos = touch.position;
-                xAngleTemp = xAngle;
-                //yAngleTemp = yAngle;
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                secondPos = touch.position;
-                xAngle = xAngleTemp + (secondPos.x - firstPos.x) * 180 / Screen.width;
-                //yAngle = yAngleTemp + (secondPos.y - firstPos.y) * 90 / Screen.heightx;
-                player.transform.rotation = Quaternion.Euler(yAngle, xAngle, 0f);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    firstPos = touch.position;
+                    xAngleTemp = xAngle;
+                    //yAngleTemp = yAngle;
+                }
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    secondPos = touch.position;
+                    xAngle = xAngleTemp + (secondPos.x - firstPos.x) * 180 / Screen.width;
+                    //yAngle = yAngleTemp + (secondPos.y - firstPos.y) * 90 / Screen.heightx;
+                    player.transform.rotation = Quaternion.Euler(yAngle, xAngle, 0f);
+                }
             }
         }
     }

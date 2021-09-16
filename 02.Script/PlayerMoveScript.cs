@@ -8,7 +8,9 @@ public class PlayerMoveScript : MonoBehaviour
     [SerializeField]
     private Text text;  //GameOver text
     [SerializeField]
-    private GameObject retryButton;
+    private GameObject retryButton; //다시하기 버튼 표시
+    [SerializeField]
+    private GameObject startWall;   //시작지점 밟으면 벽 생김
 
     //충돌처리 : 벽에 부딪혀도 통과하지 않도록
     Vector3 triggerPos;
@@ -25,13 +27,25 @@ public class PlayerMoveScript : MonoBehaviour
             Time.timeScale = 0;
             retryButton.SetActive(true);
         }
+        if(other.tag == "StartFloor")
+        {
+            //3초뒤에 벽이 생김
+            Invoke("MakeStartWall", 3f);
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        this.transform.position = triggerPos;
+        if(other.tag == "Wall")
+        {
+            this.transform.position = triggerPos;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         
+    }
+    void MakeStartWall()    //start벽 생성
+    {
+        startWall.SetActive(true);
     }
 }
