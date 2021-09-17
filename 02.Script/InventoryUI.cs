@@ -16,4 +16,10 @@ public class InventoryUI : MonoBehaviour
         activeInventory = !activeInventory;
         inventoryPanel.SetActive(activeInventory);
     }
+
+    public void ClickItemCloseInventory()   //slot ´©¸£¸é inventory²¨Áü
+    {
+        activeInventory = false;
+        inventoryPanel.SetActive(activeInventory);
+    }
 }

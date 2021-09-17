@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CloakScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject cloakSlot;
+
+    public void MakeInvisibility()
     {
-        
+        cloakSlot.SetActive(false);
+        player.SetActive(false);
+        Invoke("UndoInvisibility", 6f);    //6초간 안보임
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UndoInvisibility()
     {
-        
+        player.SetActive(true);
     }
 }

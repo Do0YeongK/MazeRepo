@@ -12,6 +12,13 @@ public class PlayerMoveScript : MonoBehaviour
     [SerializeField]
     private GameObject startWall;   //시작지점 밟으면 벽 생김
 
+    [SerializeField]
+    private GameObject player;  //player의 외관
+
+    private void Start()
+    {
+        
+    }
     //충돌처리 : 벽에 부딪혀도 통과하지 않도록
     Vector3 triggerPos;
     private void OnTriggerEnter(Collider other)
@@ -21,7 +28,7 @@ public class PlayerMoveScript : MonoBehaviour
         {
             triggerPos = this.transform.position;
         }
-        if(other.tag == "Enemy")
+        if(other.tag == "Enemy" && player.activeSelf == true)
         {
             text.text = "GameOver";
             Time.timeScale = 0;
@@ -35,6 +42,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("TriggerWall");
         if(other.tag == "Wall")
         {
             this.transform.position = triggerPos;

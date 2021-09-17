@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class HammerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //클릭한 벽을 뚫
 }
