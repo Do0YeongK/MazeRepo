@@ -15,8 +15,8 @@ public class MazeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BatchCells();
-        MakeMaze(cellMap[0,0]); //map중 제일 먼저 생성된 값(기준 cell)
+        BatchCells();   //방 여러개 붙여서 생성(길 생성 전 미로)
+        MakeMaze(cellMap[0, 0]); //map중 제일 먼저 생성된 값(기준 cell)
         cellMap[0, 0].isLeftWall = false;    //제일 왼쪽 하단의 셀
         cellMap[width - 1, height - 1].isRightWall = false; //제일 오른쪽 상단의 셀
         //벽의 active 다시 셋팅해 줌
@@ -28,9 +28,9 @@ public class MazeGenerator : MonoBehaviour
     {
         cellMap = new Cell[width, height];
         cellHistoryList = new List<Cell>();
-        for(int x=0; x < width; x++)
+        for (int x = 0; x < width; x++)
         {
-            for(int y=0; y < height; y++)
+            for (int y = 0; y < height; y++)
             {
                 Cell _cell = Instantiate<Cell>(cellPrefab, this.transform); //Cell 생성
                 _cell.index = new Vector2Int(x, y);
@@ -43,17 +43,17 @@ public class MazeGenerator : MonoBehaviour
     }
     private void MakeMaze(Cell startCell)
     {
-        Cell[] neighbors = GetNeighborCells(startCell);
-        if(neighbors.Length > 0)    //이웃한 셀 중 한개 이상의 온전한 셀이 있을 때
+        Cell[] neighbors = GetNeighborCells(startCell); //주변의 cell 배열에 넣
+        if (neighbors.Length > 0)    //이웃한 셀 중 한개 이상의 온전한 셀이 있을 때
         {
             Cell nextCell = neighbors[Random.Range(0, neighbors.Length)];
-            ConnectCells(startCell, nextCell);
+            ConnectCells(startCell, nextCell);  //벽을 없애는 함수 사용
             cellHistoryList.Add(nextCell);
             MakeMaze(nextCell);
         }
         else    //온전한 셀이 없을 경우
         {
-            if(cellHistoryList.Count > 0)
+            if (cellHistoryList.Count > 0)
             {
                 Cell lastCell = cellHistoryList[cellHistoryList.Count - 1];
                 cellHistoryList.Remove(lastCell);   //마지막으로 검색한 셀 삭제
@@ -69,7 +69,7 @@ public class MazeGenerator : MonoBehaviour
         if (index.y + 1 < height)   //index값이 height 범위내에 있을 때
         {
             Cell neighbor = cellMap[index.x, index.y + 1];
-            if(neighbor.CheckAllWall())
+            if (neighbor.CheckAllWall())
             {
                 retCellList.Add(neighbor);
             }
@@ -78,7 +78,7 @@ public class MazeGenerator : MonoBehaviour
         if (index.y - 1 >= 0)   //index값이 height 범위내에 있을 때
         {
             Cell neighbor = cellMap[index.x, index.y - 1];
-            if (neighbor.CheckAllWall())
+            if (neighbor.CheckAllWall())    //Cell에 CheckAllWall()함수 추가해줌
             {
                 retCellList.Add(neighbor);
             }
@@ -118,7 +118,7 @@ public class MazeGenerator : MonoBehaviour
         else if (dir.y >= 1)    //딱 떨어지는거(==) 보다 더 좋다고 하심(개인적 의견)
         {
             c0.isBackWall = false;
-            c1. isForwardWall = false;
+            c1.isForwardWall = false;
         }
         //left
         else if (dir.x >= 1)    //딱 떨어지는거(==) 보다 더 좋다고 하심(개인적 의견)

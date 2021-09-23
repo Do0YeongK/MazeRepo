@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(target.transform.position);
+        if (target.activeSelf == true)  //Player가 보일때만(투명망토 사용시 감지 못함)
+        {
+            nav.SetDestination(target.transform.position);
+        }   
     }
 }

@@ -7,7 +7,7 @@ public class PlayerJoyStickMove : MonoBehaviour
 {
     [Range(0,10)]
     public float speed = 5f; //플레이어 속도
-    public GameObject player;   //플레이어
+    public GameObject player;   //플레이어(부모 Player)
     private RectTransform rectTransform;
 
     private void Awake()
@@ -17,18 +17,15 @@ public class PlayerJoyStickMove : MonoBehaviour
     }
     private void Start()
     {
-        if(player == null)
-        {
-            player = GameObject.FindWithTag("Player");
-        }
+
     }
     private void Update()
     {
         float Horizontal = rectTransform.anchoredPosition.x;    //조이스틱 중앙이(0,0), Horizontal =  조이스틱 x방향으로 이동한 값
         float Vertical = rectTransform.anchoredPosition.y;  //조이스틱 중앙이(0,0), Vertical =  조이스틱  y방향으로 이동한 값
-
-        Vector3 position = new Vector3(Horizontal, 0, Vertical).normalized;
-        player.transform.Translate(position * speed * Time.deltaTime, Space.Self);
+        
+            Vector3 position = new Vector3(Horizontal, 0, Vertical).normalized;
+            player.transform.Translate(position * speed * Time.deltaTime, Space.Self);
     }
 }
 
