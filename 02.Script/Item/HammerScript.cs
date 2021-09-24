@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HammerScript : MonoBehaviour
 {
+    //Å¬¸¯ÇÑ º®À» ¶Õ
     [SerializeField]
-    private GameObject targetWall;    //ì‚­ì œí•  ë²½
-    public Material red;
+    private GameObject targetWall;    //»èÁ¦ÇÒ º®
 
     [SerializeField]
     private GameObject hammerSlot;
@@ -15,17 +15,17 @@ public class HammerScript : MonoBehaviour
 
     private void Update()
     {
-        if(stillDigging == true)
+        if (stillDigging == true)
         {
             Digging();
         }
     }
     /// <summary>
-    /// í´ë¦­í•œ ë²½ì„ ì‚­ì œí•¨
+    /// Å¬¸¯ÇÑ º®À» »èÁ¦ÇÔ
     /// </summary>
     void Digging()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -35,8 +35,7 @@ public class HammerScript : MonoBehaviour
                 if ((Physics.Raycast(ray.origin, ray.direction * 10, out hit)))
                 {
                     targetWall = hit.collider.gameObject;
-                    GameObject parentWall = targetWall.transform.parent.gameObject;
-                    Destroy(parentWall);
+                    Destroy(targetWall);
                 }
             }
             stillDigging = false;
@@ -46,16 +45,15 @@ public class HammerScript : MonoBehaviour
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                Touch touch = Input.GetTouch(0); // ì²«ë²ˆì§¸ í„°ì¹˜ ê°’
-                Vector2 touchPosition = touch.position; // í„°ì¹˜í•œ ìœ„ì¹˜
+                Touch touch = Input.GetTouch(0); // Ã¹¹øÂ° ÅÍÄ¡ °ª
+                Vector2 touchPosition = touch.position; // ÅÍÄ¡ÇÑ À§Ä¡
 
                 Ray ray = Camera.main.ScreenPointToRay(touchPosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
                     targetWall = hit.collider.gameObject;
-                    GameObject parentWall = targetWall.transform.parent.gameObject; //wall_cellì˜ ë¶€ëª¨ì¸ Wallí•œë©´ì„ ë°›ìŒ
-                    Destroy(parentWall);    //ë²½ í•œë©´ ì‚­ì œ
+                    Destroy(targetWall);
                 }
             }
         }
@@ -67,7 +65,7 @@ public class HammerScript : MonoBehaviour
     }
 }
 
-/* : wall í•œë©´ì˜ ìƒ‰ ë°”ê¾¸ê¸°
+/* : wall ÇÑ¸éÀÇ »ö ¹Ù²Ù±â
 for (int i = 0; i<parentWall.transform.childCount; i++)
  {
     parentWall.transform.GetChild(i).GetComponent<MeshRenderer>().material = red;

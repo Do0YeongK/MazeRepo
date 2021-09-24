@@ -9,11 +9,12 @@ public class PlayerMoveScript : MonoBehaviour
     private Text text;  //GameOver text
     [SerializeField]
     private GameObject retryButton; //다시하기 버튼 표시
-    [SerializeField]
-    private GameObject startWall;   //시작지점 밟으면 벽 생김
 
     [SerializeField]
     private GameObject player;  //player의 외관
+
+    [SerializeField]
+    private Text gameOver;  //winner 시장
 
     private void Start()
     {
@@ -34,10 +35,10 @@ public class PlayerMoveScript : MonoBehaviour
             Time.timeScale = 0;
             retryButton.SetActive(true);
         }
-        if(other.tag == "StartFloor")
+        if(other.tag == "Exit")
         {
-            //3초뒤에 벽이 생김
-            Invoke("MakeStartWall", 3f);
+            //승리!!
+            gameOver.text = "Escape!!!!!";
         }
     }
     private void OnTriggerStay(Collider other)
@@ -51,9 +52,5 @@ public class PlayerMoveScript : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-    }
-    void MakeStartWall()    //start벽 생성
-    {
-        startWall.SetActive(true);
     }
 }

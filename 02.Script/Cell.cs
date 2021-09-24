@@ -34,21 +34,4 @@ public class Cell : MonoBehaviour
     {
         return isForwardWall && isBackWall && isLeftWall && isRightWall;    //다 true = 모든 면이 존재
     }
-
-    public void RemoveFowardDoubleLayer()
-    {
-        fowardWall.SetActive(false);
-    }
-    public void RemoveBackDoubleLayer()
-    {
-        backWall.SetActive(false);
-    }
-    public void RemoveLeftDoubleLayer()
-    {
-        leftWall.SetActive(false);
-    }
-    public void RemoveRightDoubleLayer()
-    {
-        rightWall.SetActive(false);
-    }
 }
