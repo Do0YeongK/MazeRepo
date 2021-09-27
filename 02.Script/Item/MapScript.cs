@@ -10,11 +10,13 @@ public class MapScript : MonoBehaviour
     //지도 보여줌
     public void ShowMap()
     {
+        Time.timeScale = 0;
         map.SetActive(true);
     }
     //지도 닫음
     public void CloseMap()
     {
+        Time.timeScale = 1;
         map.SetActive(false);
     }
 }

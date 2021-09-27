@@ -25,7 +25,9 @@ public class ItemInstantiate : MonoBehaviour
         //추가 망치 아이템
         for (int i = 0; i < 3; ++i)
         {
-            Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+            GameObject hammerClone 
+                = Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+            hammerClone.name = "Hammer_" + (i+1);
         }
     }
 }

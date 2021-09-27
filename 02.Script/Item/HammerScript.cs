@@ -35,7 +35,14 @@ public class HammerScript : MonoBehaviour
                 if ((Physics.Raycast(ray.origin, ray.direction * 10, out hit)))
                 {
                     targetWall = hit.collider.gameObject;
-                    Destroy(targetWall);
+                    if (targetWall.tag == "Wall")
+                    {
+                        Destroy(targetWall);
+                    }                    //벽말고 다른거 눌렀을 경우
+                    else
+                    {
+                        Digging();
+                    }
                 }
             }
             stillDigging = false;
@@ -53,7 +60,15 @@ public class HammerScript : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
                     targetWall = hit.collider.gameObject;
-                    Destroy(targetWall);
+                    if(targetWall.tag == "Wall")
+                    {
+                        Destroy(targetWall);
+                    }
+                    //벽말고 다른거 눌렀을 경우
+                    else
+                    {
+                        Digging();
+                    }
                 }
             }
         }
@@ -61,6 +76,7 @@ public class HammerScript : MonoBehaviour
 
     public void OnclickHammer()
     {
+        hammerSlot.SetActive(false);
         stillDigging = true;
     }
 }

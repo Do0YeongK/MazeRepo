@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PlayerJoyStickMove : MonoBehaviour
 {
     [Range(0,10)]
-    public float speed = 5f; //플레이어 속도
+    public float speed = 6f; //플레이어 속도
     public GameObject player;   //플레이어
     private RectTransform rectTransform;
 

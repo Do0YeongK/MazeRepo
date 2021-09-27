@@ -41,7 +41,10 @@ public class ItemClickScript : MonoBehaviour
             }
             else
             {
-                Instantiate(hammerSlot, parentContent.transform);   //Instantiate(GameObject, 부모);
+                GameObject hammerSlotClone = Instantiate(hammerSlot, parentContent.transform);   //Instantiate(GameObject, 부모);
+                hammerSlotClone.name = "hammerSlot_" + hammerNum;
+                hammerSlotClone.SetActive(true);
+                hammerNum++;
             }
         }
         if(other.tag == "Cloak")    //투명망토도 레어탬!!한개!!

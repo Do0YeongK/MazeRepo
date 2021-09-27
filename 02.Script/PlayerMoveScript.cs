@@ -32,18 +32,17 @@ public class PlayerMoveScript : MonoBehaviour
         if(other.tag == "Enemy" && player.activeSelf == true)
         {
             text.text = "GameOver";
-            Time.timeScale = 0;
-            retryButton.SetActive(true);
+            GameOver();
         }
         if(other.tag == "Exit")
         {
             //승리!!
-            gameOver.text = "Escape!!!!!";
+            gameOver.text = "Escape";
+            Invoke("GameOver", 1f); //1초 => 우주선이 발사되는 애니메이션 넣기
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("TriggerWall");
         if(other.tag == "Wall")
         {
             this.transform.position = triggerPos;
@@ -52,5 +51,11 @@ public class PlayerMoveScript : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0;
+        retryButton.SetActive(true);
     }
 }
