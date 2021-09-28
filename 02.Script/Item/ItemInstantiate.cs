@@ -18,15 +18,15 @@ public class ItemInstantiate : MonoBehaviour
     private void Start()
     {
         // 아이템 랜덤 생성
-        Instantiate(map, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
-        Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
-        Instantiate(invisibilityCloak, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+        Instantiate(map, new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+        Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+        Instantiate(invisibilityCloak, new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
 
         //추가 망치 아이템
         for (int i = 0; i < 3; ++i)
         {
             GameObject hammerClone 
-                = Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
+                = Instantiate(hammer, new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f)), Quaternion.identity, parentItem.transform);
             hammerClone.name = "Hammer_" + (i+1);
         }
     }

@@ -9,6 +9,11 @@ public class AnimationScript : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    private void Start()
+    {
+        StartCoroutine(MoveDelay(3f));
+    }
+
     private void Update()
     {
         myAnimator.SetBool("Attack", false);
@@ -20,5 +25,11 @@ public class AnimationScript : MonoBehaviour
             //АјАн
             myAnimator.SetBool("Attack", true);
         }
+    }
+
+    IEnumerator MoveDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        myAnimator.SetBool("Delay", true);
     }
 }

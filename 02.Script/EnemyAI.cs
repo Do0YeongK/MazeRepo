@@ -9,10 +9,9 @@ public class EnemyAI : MonoBehaviour
     public GameObject target;   //Player(rigidbody)
     public GameObject targetBody;
 
-    // Start is called before the first frame update
-    void GameStart()
+    private void Start()
     {
-        Invoke("EnemyMove", 3f);
+        //3ÃÊ°£ nav¸¦ ²û
     }
 
     // Update is called once per frame
