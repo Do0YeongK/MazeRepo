@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0)    //모바일 게임용 화면rotation
         {
             Touch touch = Input.GetTouch(0);
             if (touch.position.x < this.halfScreenWidth)
@@ -49,6 +49,18 @@ public class CameraController : MonoBehaviour
                     player.transform.rotation = Quaternion.Euler(yAngle, xAngle, 0f);
                 }
             }
+        }
+
+        //컴퓨터 게임용
+        if (Input.GetKey(KeyCode.A))
+        {
+            xAngle -= 1f; 
+            player.transform.rotation = Quaternion.Euler(0f, xAngle, 0f);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            xAngle += 1f;
+            player.transform.rotation = Quaternion.Euler(0f, xAngle, 0f);
         }
     }
 }

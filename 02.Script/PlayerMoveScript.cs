@@ -16,6 +16,9 @@ public class PlayerMoveScript : MonoBehaviour
     [SerializeField]
     private Text gameOver;  //winner 시장
 
+    [SerializeField]
+    private GameObject mainCamera;
+
     private void Start()
     {
         
@@ -37,8 +40,9 @@ public class PlayerMoveScript : MonoBehaviour
         if(other.tag == "Exit")
         {
             //승리!!
+            mainCamera.SetActive(false);    //메인 카메라 끔 => Launch 카메라가 켜짐
             gameOver.text = "Escape";
-            Invoke("GameOver", 1f); //1초 => 우주선이 발사되는 애니메이션 넣기
+            Invoke("GameOver", 2.4f); //우주선 발사 애니메이션 후 retry버튼 나오게
         }
     }
     private void OnTriggerStay(Collider other)

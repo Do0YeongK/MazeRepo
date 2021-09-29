@@ -13,6 +13,7 @@ public class HammerScript : MonoBehaviour
 
     bool stillDigging = false;
 
+    
     private void Update()
     {
         if (stillDigging == true)
