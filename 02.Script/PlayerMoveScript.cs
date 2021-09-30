@@ -19,25 +19,36 @@ public class PlayerMoveScript : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
 
-    private void Start()
+    [SerializeField]
+    private bool isTrigger = true;  //true일때만 Trigger가 작용되게끔
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //trigger을 끔(isTrigger = false)
+            isTrigger = false;
+            
+        }
     }
+
     //충돌처리 : 벽에 부딪혀도 통과하지 않도록
     Vector3 triggerPos;
     private void OnTriggerEnter(Collider other)
     {
-        
-        if(other.tag == "Wall")
+        if(isTrigger == true)
         {
-            triggerPos = this.transform.position;
+            if (other.tag == "Wall")
+            {
+                triggerPos = this.transform.position;
+            }
+            if (other.tag == "Enemy" && player.activeSelf == true)
+            {
+                text.text = "GameOver";
+                GameOver();
+            }
         }
-        if(other.tag == "Enemy" && player.activeSelf == true)
-        {
-            text.text = "GameOver";
-            GameOver();
-        }
-        if(other.tag == "Exit")
+        if (other.tag == "Exit")
         {
             //승리!!
             mainCamera.SetActive(false);    //메인 카메라 끔 => Launch 카메라가 켜짐
@@ -47,9 +58,13 @@ public class PlayerMoveScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Wall")
+        if(isTrigger == true)
         {
-            this.transform.position = triggerPos;
+            if (other.tag == "Wall")
+            {
+                this.transform.position = triggerPos;
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)

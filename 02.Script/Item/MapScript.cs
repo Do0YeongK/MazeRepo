@@ -7,9 +7,13 @@ public class MapScript : MonoBehaviour
     [SerializeField]
     private GameObject map;
 
+    [SerializeField]
+    private GameObject inventory;
+
     //Áöµµ º¸¿©ÁÜ
     public void ShowMap()
     {
+        inventory.SetActive(false);
         Time.timeScale = 0;
         map.SetActive(true);
     }
@@ -18,5 +22,6 @@ public class MapScript : MonoBehaviour
     {
         Time.timeScale = 1;
         map.SetActive(false);
+        inventory.SetActive(true);
     }
 }

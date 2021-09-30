@@ -8,12 +8,9 @@ public class HammerScript : MonoBehaviour
     [SerializeField]
     private GameObject targetWall;    //삭제할 벽
 
-    [SerializeField]
-    private GameObject hammerSlot;
-
+    //bool stillDigging = false;
     bool stillDigging = false;
 
-    
     private void Update()
     {
         if (stillDigging == true)
@@ -77,7 +74,6 @@ public class HammerScript : MonoBehaviour
 
     public void OnclickHammer()
     {
-        hammerSlot.SetActive(false);
         stillDigging = true;
     }
 }
